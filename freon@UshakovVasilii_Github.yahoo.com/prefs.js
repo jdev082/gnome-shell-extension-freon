@@ -91,17 +91,17 @@ var FreonPrefsWidget = new GObject.registerClass(class Freon_FreonPrefsWidget ex
             label : 'lm-sensors',
             help : _('Read sensors from lm-sensors')});
 
-        this._addSwitch({key : 'use-generic-freeipmi', y : i, x : j,
-            label : 'FreeIPMI',
-            help : _('Read sensors using ipmi-sensors from FreeIPMI')});
-
-        this._addComboBox({
-            items : {
-                'direct' : 'Direct',
-                'sudo' : 'sudo' },
-            key: 'exec-method-freeipmi', y : i++, x : j + 1,
-            label: ''
-        });
+        // this._addSwitch({key : 'use-generic-freeipmi', y : i, x : j,
+        //     label : 'FreeIPMI',
+        //     help : _('Read sensors using ipmi-sensors from FreeIPMI')});
+        //
+        // this._addComboBox({
+        //     items : {
+        //         'direct' : 'Direct',
+        //         'sudo' : 'sudo' },
+        //     key: 'exec-method-freeipmi', y : i++, x : j + 1,
+        //     label: ''
+        // });
 
         this._addSwitch({key : 'use-generic-liquidctl', y : i++, x : j,
             label : 'liquidctl',

@@ -13,7 +13,7 @@ const ExtensionUtils = imports.misc.extensionUtils;
 const Me = ExtensionUtils.getCurrentExtension();
 
 const SensorsUtil = Me.imports.sensorsUtil.SensorsUtil;
-const FreeipmiUtil = Me.imports.freeipmiUtil.FreeipmiUtil;
+// const FreeipmiUtil = Me.imports.freeipmiUtil.FreeipmiUtil;
 const LiquidctlUtil = Me.imports.liquidctlUtil.LiquidctlUtil;
 
 const NvidiaUtil = Me.imports.nvidiaUtil.NvidiaUtil;
@@ -72,7 +72,7 @@ const FreonMenuButton = GObject.registerClass(class Freon_FreonMenuButton extend
         this._utils = {};
 
         this._initSensorsUtility();
-        this._initFreeipmiUtility();
+        // this._initFreeipmiUtility();
         this._initLiquidctlUtility();
 
         this._initNvidiaUtility();
@@ -131,8 +131,8 @@ const FreonMenuButton = GObject.registerClass(class Freon_FreonMenuButton extend
         this._addSettingChangedSignal('show-decimal-value', this._querySensors.bind(this));
 
         this._addSettingChangedSignal('use-generic-lmsensors', this._sensorsUtilityChanged.bind(this));
-        this._addSettingChangedSignal('use-generic-freeipmi', this._freeipmiUtilityChanged.bind(this));
-        this._addSettingChangedSignal('exec-method-freeipmi', this._freeipmiUtilityChanged.bind(this));
+        // this._addSettingChangedSignal('use-generic-freeipmi', this._freeipmiUtilityChanged.bind(this));
+        // this._addSettingChangedSignal('exec-method-freeipmi', this._freeipmiUtilityChanged.bind(this));
         this._addSettingChangedSignal('use-generic-liquidctl', this._liquidctlUtilityChanged.bind(this));
 
         this._addSettingChangedSignal('use-gpu-nvidia', this._nvidiaUtilityChanged.bind(this));
@@ -251,24 +251,24 @@ const FreonMenuButton = GObject.registerClass(class Freon_FreonMenuButton extend
         this._updateUI(true);
     }
 
-    _initFreeipmiUtility() {
-        if (this._settings.get_boolean('use-generic-freeipmi'))
-            this._utils.freeipmi = new FreeipmiUtil();
-    }
-
-    _destroyFreeipmiUtility() {
-        if(this._utils.freeipmi) {
-            this._utils.freeipmi.destroy();
-            delete this._utils.freeipmi;
-        }
-    }
-
-    _freeipmiUtilityChanged() {
-        this._destroyFreeipmiUtility();
-        this._initFreeipmiUtility();
-        this._querySensors();
-        this._updateUI(true);
-    }
+    // _initFreeipmiUtility() {
+    //     if (this._settings.get_boolean('use-generic-freeipmi'))
+    //         this._utils.freeipmi = new FreeipmiUtil();
+    // }
+    //
+    // _destroyFreeipmiUtility() {
+    //     if(this._utils.freeipmi) {
+    //         this._utils.freeipmi.destroy();
+    //         delete this._utils.freeipmi;
+    //     }
+    // }
+    //
+    // _freeipmiUtilityChanged() {
+    //     this._destroyFreeipmiUtility();
+    //     this._initFreeipmiUtility();
+    //     this._querySensors();
+    //     this._updateUI(true);
+    // }
 
     _initLiquidctlUtility() {
         if (this._settings.get_boolean('use-generic-liquidctl'))
@@ -443,7 +443,7 @@ const FreonMenuButton = GObject.registerClass(class Freon_FreonMenuButton extend
 
     _onButtonDestroy(){
         this._destroySensorsUtility();
-        this._destroyFreeipmiUtility();
+        // this._destroyFreeipmiUtility();
         this._destroyLiquidctlUtility();
 
         this._destroyNvidiaUtility();
@@ -534,14 +534,14 @@ const FreonMenuButton = GObject.registerClass(class Freon_FreonMenuButton extend
                 voltageInfo = voltageInfo.concat(this._utils.sensors.volt);
         }
 
-        if (this._utils.freeipmi && this._utils.freeipmi.available) {
-            if (this._settings.get_boolean('show-temperature'))
-                sensorsTempInfo = sensorsTempInfo.concat(this._utils.freeipmi.temp);
-            if (this._settings.get_boolean('show-rotationrate'))
-                fanInfo = fanInfo.concat(this._utils.freeipmi.rpm);
-            if (this._settings.get_boolean('show-voltage'))
-                voltageInfo = voltageInfo.concat(this._utils.freeipmi.volt);
-        }
+        // if (this._utils.freeipmi && this._utils.freeipmi.available) {
+        //     if (this._settings.get_boolean('show-temperature'))
+        //         sensorsTempInfo = sensorsTempInfo.concat(this._utils.freeipmi.temp);
+        //     if (this._settings.get_boolean('show-rotationrate'))
+        //         fanInfo = fanInfo.concat(this._utils.freeipmi.rpm);
+        //     if (this._settings.get_boolean('show-voltage'))
+        //         voltageInfo = voltageInfo.concat(this._utils.freeipmi.volt);
+        // }
 
         if (this._utils.liquidctl && this._utils.liquidctl.available) {
             if (this._settings.get_boolean('show-temperature'))
