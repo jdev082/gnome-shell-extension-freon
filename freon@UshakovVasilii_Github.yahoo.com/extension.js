@@ -918,7 +918,7 @@ const FreonMenuButton = GObject.registerClass(class Freon_FreonMenuButton extend
                     temperatureGroup.menu.addMenuItem(item);
                 } else if (needGroupRotationRate && s.type == 'fan') {
                     if (!rotationrateGroup) {
-                        rotationrateGroup = new PopupMenu.PopupSubMenuMenuItem(_('Rotation Rate'), true);
+                        rotationrateGroup = new PopupMenu.PopupSubMenuMenuItem(_('Fan Speed'), true);
                         rotationrateGroup.icon.gicon = this._sensorIcons['fan'];
                         this.menu.addMenuItem(rotationrateGroup);
                     }
